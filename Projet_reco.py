@@ -29,8 +29,6 @@ input_shape = (96, 128, 3)
 
 
 model = keras.Sequential()
-#C55 = Conv2D(a, (5, 5), activation='relu')
-#C44 = Conv2D(b, (4, 4), activation='relu')
 model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape=input_shape)) #5
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
