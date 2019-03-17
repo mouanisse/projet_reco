@@ -44,7 +44,7 @@ model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l
 model.add(keras.layers.Conv2D(80, (3, 3), activation='relu')) #150
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
-#model.add(keras.layers.Dropout(0.02))
+model.add(keras.layers.Dropout(0.02))
 
 
 
