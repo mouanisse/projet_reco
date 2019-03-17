@@ -27,21 +27,21 @@ input_shape = (96, 128, 3)
 
 
 model = keras.Sequential()
-model.add(keras.layers.Conv2D(40, (5, 1), activation='relu', input_shape=input_shape)) #5
+model.add(keras.layers.Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
 model.add(keras.layers.Dropout(0.02))
 
 
 
-model.add(keras.layers.Conv2D(80, (3, 3), activation='relu')) #25
+model.add(keras.layers.Conv2D(50, (3, 3), activation='relu')) #25
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
 model.add(keras.layers.Dropout(0.01))
 
 
 
-model.add(keras.layers.Conv2D(160, (3, 3), activation='relu')) #150
+model.add(keras.layers.Conv2D(100, (3, 3), activation='relu')) #150
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 #model.add(keras.layers.Dropout(0.02))
