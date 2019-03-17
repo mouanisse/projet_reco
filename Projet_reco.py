@@ -30,7 +30,7 @@ model = keras.Sequential()
 model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape=input_shape)) #5
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
-model.add(keras.layers.Dropout(0.007))
+model.add(keras.layers.Dropout(0.0006))
 
 
 
