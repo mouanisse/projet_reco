@@ -37,7 +37,7 @@ model.add(keras.layers.Dropout(0.03))
 model.add(keras.layers.Conv2D(20, (3, 3), activation='relu')) #25
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
-model.add(keras.layers.Dropout(0.01))
+#model.add(keras.layers.Dropout(0.01))
 
 
 
