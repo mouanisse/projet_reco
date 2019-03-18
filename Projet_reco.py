@@ -92,6 +92,5 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accura
 model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(x_test, y_test, verbose=0)
-print('Shape after: ',model.output_shape)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
