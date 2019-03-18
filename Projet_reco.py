@@ -1,7 +1,6 @@
 
 import tensorflow as tf
 from tensorflow import keras
-from keras.layers import Conv2D, BatchNormalization, Dropout, MaxPooling2D, Dense, Flatten, Bidirectional, CuDNNLSTM
 import numpy as np
 
 images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
@@ -85,7 +84,7 @@ sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
+model.fit(x_train, y_train, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
