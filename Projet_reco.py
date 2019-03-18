@@ -29,7 +29,6 @@ input_shape = (96, 128, 3)
 
 model = keras.Sequential()
 model.add(keras.layers.Permute((2,1,3)))
-print("Shape after: ",model.output_shape)
 
 # On utilise la fonction Permute pr changer de ('None',mel_dim,tim_steps,3) à (batch_size ou 'None', sequence, vec_dim)
 
@@ -93,5 +92,6 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accura
 model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(x_test, y_test, verbose=0)
+print('Shape after: ',model.output_shape)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
