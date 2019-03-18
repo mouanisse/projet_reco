@@ -3,7 +3,6 @@ import tensorflow as tf
 from tensorflow import keras
 from keras.layers import Conv2D, BatchNormalization, Dropout, MaxPooling2D, Dense, Flatten, Bidirectional, CuDNNLSTM
 import numpy as np
-from keras import backend as K
 
 images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
 labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
@@ -65,7 +64,7 @@ input_shape = (96, 128, 3)
 
 
 model = keras.Sequential()
-model.add(Conv2D(10, (5, 1), activation='relu', input_shape=input_shape))
+model.add(Conv2D(10, (5, 1), activation='relu', input_shape= input_shape))
 model.add(BatchNormalization())
 model.add(Conv2D(1, (5, 1), activation='relu'))
 model.add(BatchNormalization())
