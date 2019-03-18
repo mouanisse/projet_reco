@@ -28,7 +28,6 @@ input_shape = (96, 128, 3)
 # ('None' represents the batch_size).
 
 model = keras.Sequential()
-print("Shape before: ",model.output_shape)
 model.add(keras.layers.Permute((2,1,3)))
 print("Shape after: ",model.output_shape)
 
