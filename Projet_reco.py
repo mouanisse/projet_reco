@@ -23,7 +23,7 @@ input_shape = (96, 128, 3)
 
 
 
-# Definition du modèle
+# 2D Convolutional Model
 
 
 model = keras.Sequential()
@@ -47,12 +47,7 @@ model.add(keras.layers.MaxPooling2D(2, 2))
 #model.add(keras.layers.Dropout(0.02))
 
 
-model.add(keras.layers.Conv2D(100, (3, 3), activation='relu')) #150
-model.add(keras.layers.BatchNormalization())
-model.add(keras.layers.MaxPooling2D(2, 2))
-
-
-model.add(keras.layers.Conv2D(160, (4, 4), activation='relu')) #150
+model.add(keras.layers.Conv2D(160, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
