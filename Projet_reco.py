@@ -69,8 +69,8 @@ model.add(keras.layers.Conv2D(1, (5, 1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 
-model.add(keras.layers.Bidirectional(CuDNNLSTM(64, return_sequences = True)))
-model.add(keras.layers.Bidirectional(CuDNNLSTM(64)))
+model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64, return_sequences = True)))
+model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64)))
 
 model.add(keras.layers.Dense(64, activation='relu'))
 model.add(keras.layers.Dense(32, activation='relu'))
