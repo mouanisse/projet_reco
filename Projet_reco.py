@@ -64,20 +64,20 @@ input_shape = (96, 128, 3)
 
 
 model = keras.Sequential()
-model.add(Conv2D(10, (5, 1), activation='relu', input_shape= input_shape))
-model.add(BatchNormalization())
-model.add(Conv2D(1, (5, 1), activation='relu'))
-model.add(BatchNormalization())
+model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape= input_shape))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Conv2D(1, (5, 1), activation='relu'))
+model.add(keras.layers.BatchNormalization())
 
 # A la sortie du réseau de convolution , on a un vecteur de dimension 4 , on utilise la methode squeeze pr eliminer une dim
 # et avoir un vecteur a 3 dimensions
 
-model.add(Bidirectional(CuDNNLSTM(64, return_sequences = True)))
-model.add(Bidirectional(CuDNNLSTM(64)))
+model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64, return_sequences = True)))
+model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64)))
 
-model.add(Dense(64, activation='relu'))
-model.add(Dense(32, activation='relu'))
-model.add(Dense(2, activation='softmax'))
+model.add(keras.layers.Dense(64, activation='relu'))
+model.add(keras.layers.Dense(32, activation='relu'))
+model.add(keras.layers.Dense(2, activation='softmax'))
 
 
 
