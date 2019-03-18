@@ -24,10 +24,11 @@ input_shape = (96, 128, 3)
 
 
 # 2D Convolutional Model
-
+# At the output of the spectrogram we will have a vector of shape ('None',mel_dim,tim_steps,1)
+# 'None' represents the batch_size.
 
 model = keras.Sequential()
-model.add(keras.layers.Permute(2,1,3))
+model.add(keras.layers.Permute((2,1,3)))
 
 model.add(keras.layers.Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
 model.add(keras.layers.BatchNormalization())
