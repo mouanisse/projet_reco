@@ -24,11 +24,15 @@ input_shape = (96, 128, 3)
 
 
 # 2D Convolutional Model
-# At the output of the spectrogram we will have a vector of shape ('None',mel_dim,tim_steps,1)
-# 'None' represents the batch_size.
+# At the output of the spectrogram we will have a vector of shape ('None',mel_dim,tim_steps,3)
+# ('None' represents the batch_size).
 
 model = keras.Sequential()
+print("Shape before: ",model.output_shape)
 model.add(keras.layers.Permute((2,1,3)))
+print("Shape after: ",model.output_shape)
+
+# On utilise la fonction Permute pr changer de ('None',mel_dim,tim_steps,3) à (batch_size ou 'None', sequence, vec_dim)
 
 model.add(keras.layers.Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
 model.add(keras.layers.BatchNormalization())
@@ -83,12 +87,12 @@ model.add(keras.layers.Dense(2, activation='softmax'))
 
 
 
-sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+#sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+#model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
+#model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
-score = model.evaluate(x_test, y_test, verbose=0)
-print('Test loss:', score[0])
-print('Test accuracy:', score[1])
+#score = model.evaluate(x_test, y_test, verbose=0)
+#print('Test loss:', score[0])
+#print('Test accuracy:', score[1])
