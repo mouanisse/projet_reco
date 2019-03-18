@@ -1,7 +1,9 @@
 
 import tensorflow as tf
 from tensorflow import keras
+from keras.layers import Conv2D, BatchNormalization, Dropout, MaxPooling2D, Dense, Flatten, Bidirectional, CuDNNLSTM
 import numpy as np
+from keras import backend as K
 
 images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
 labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
@@ -27,54 +29,56 @@ input_shape = (96, 128, 3)
 
 
 #model = keras.Sequential()
-#model.add(keras.layers.Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
-#model.add(keras.layers.BatchNormalization())
-#model.add(keras.layers.MaxPooling2D(2, 1))
-#model.add(keras.layers.Dropout(0.02))
+#model.add(Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
+#model.add(BatchNormalization())
+#model.add(MaxPooling2D(2, 1))
+#model.add(Dropout(0.02))
 
 
 
-#model.add(keras.layers.Conv2D(40, (3, 3), activation='relu')) #25
-#model.add(keras.layers.BatchNormalization())
-#model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
-#model.add(keras.layers.Dropout(0.01))
+#model.add(Conv2D(40, (3, 3), activation='relu')) #25
+#model.add(BatchNormalization())
+#model.add(MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
+#model.add(Dropout(0.01))
 
 
 
-#model.add(keras.layers.Conv2D(80, (3, 3), activation='relu')) #150
-#model.add(keras.layers.BatchNormalization())
-#model.add(keras.layers.MaxPooling2D(2, 2))
-#model.add(keras.layers.Dropout(0.02))
+#model.add(Conv2D(80, (3, 3), activation='relu')) #150
+#model.add(BatchNormalization())
+#model.add(MaxPooling2D(2, 2))
+#model.add(Dropout(0.02))
 
 
-#model.add(keras.layers.Conv2D(160, (3, 3), activation='relu')) 
-#model.add(keras.layers.BatchNormalization())
-#model.add(keras.layers.MaxPooling2D(2, 2))
+#model.add(Conv2D(160, (3, 3), activation='relu')) 
+#model.add(BatchNormalization())
+#model.add(MaxPooling2D(2, 2))
 
 
 
-#model.add(keras.layers.Flatten())
-#model.add(keras.layers.Dense(64, activation='relu'))
-#model.add(keras.layers.Dense(32, activation='relu'))
-#model.add(keras.layers.Dense(2, activation='softmax'))
+#model.add(Flatten())
+#model.add(Dense(64, activation='relu'))
+#model.add(Dense(32, activation='relu'))
+#model.add(Dense(2, activation='softmax'))
 
 
 # RNN Model
 
 
 model = keras.Sequential()
-model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape=input_shape))
-model.add(keras.layers.BatchNormalization())
-model.add(keras.layers.Conv2D(1, (5, 1), activation='relu'))
-model.add(keras.layers.BatchNormalization())
+model.add(Conv2D(10, (5, 1), activation='relu', input_shape=input_shape))
+model.add(BatchNormalization())
+model.add(Conv2D(1, (5, 1), activation='relu'))
+model.add(BatchNormalization())
 
+# A la sortie du réseau de convolution , on a un vecteur de dimension 4 , on utilise la methode squeeze pr eliminer une dim
+# et avoir un vecteur a 3 dimensions
 
-model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64, return_sequences = True)))
-model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64)))
+model.add(Bidirectional(CuDNNLSTM(64, return_sequences = True)))
+model.add(Bidirectional(CuDNNLSTM(64)))
 
-model.add(keras.layers.Dense(64, activation='relu'))
-model.add(keras.layers.Dense(32, activation='relu'))
-model.add(keras.layers.Dense(2, activation='softmax'))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(2, activation='softmax'))
 
 
 
@@ -82,7 +86,7 @@ sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
+model.fit(x_train, y_train, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
