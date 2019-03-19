@@ -2,6 +2,7 @@
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
+from keras import backend as K
 
 images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
 labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
@@ -24,13 +25,13 @@ input_shape = (96, 128, 3)
 
 
 # 2D Convolutional Model
-# At the output of the spectrogram we will have a vector of shape ('None',mel_dim,tim_steps,3)
+# At the output of the spectrogram we will have a vector of shape ('None',mel_dim,tim_steps,1)
 # ('None' represents the batch_size).
 
 model = keras.Sequential()
-#model.add(keras.layers.Permute((2,1,3)))
+model.add(keras.layers.Permute((2,1,3)))
 
-# On utilise la fonction Permute pr changer de ('None',mel_dim,tim_steps,3) à (batch_size ou 'None', sequence, vec_dim)
+# On utilise la fonction Permute pr changer de ('None',mel_dim,tim_steps,1) à (batch_size ou 'None', sequence, vec_dim)
 
 #model.add(keras.layers.Conv2D(20, (5, 1), activation='relu', input_shape=input_shape)) #5
 #model.add(keras.layers.BatchNormalization())
@@ -71,6 +72,8 @@ model.add(keras.layers.BatchNormalization())
 
 # A la sortie du réseau de convolution , on a un vecteur de dimension 4 , on utilise la methode squeeze pr eliminer une dim
 # et avoir un vecteur a 3 dimensions
+
+model.add(keras.layers.Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim'))
 
 model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64, return_sequences = True)))
 model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64)))
