@@ -28,7 +28,7 @@ input_shape = (96, 128, 3)
 # ('None' represents the batch_size).
 
 model = keras.Sequential()
-model.add(keras.layers.Permute((2,1,3)))
+#model.add(keras.layers.Permute((2,1,3)))
 
 # On utilise la fonction Permute pr changer de ('None',mel_dim,tim_steps,3) à (batch_size ou 'None', sequence, vec_dim)
 
