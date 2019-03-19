@@ -64,7 +64,7 @@ model.add(keras.layers.Permute((2,1,3)))
 # RNN Model
 
 
-model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape= input_shape)
+model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape= input_shape))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Conv2D(1, (5, 1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
