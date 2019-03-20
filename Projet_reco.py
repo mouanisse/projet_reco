@@ -23,7 +23,7 @@ input_shape = (96, 128, 3)
 # ('None' represents the batch_size).
 
 model = keras.Sequential()
-#model.add(keras.layers.Permute((2,1,3)))
+model.add(keras.layers.Permute((2,1,3)))
 
 # On utilise la fonction Permute pr changer le format de l'entrée
 # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
