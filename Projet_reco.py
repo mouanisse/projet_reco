@@ -37,7 +37,7 @@ model.add(keras.layers.MaxPooling2D(2, 1))
 
 model.add(keras.layers.Conv2D(40, (3, 3), activation='relu'))
 model.add(keras.layers.BatchNormalization())
-model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image#
+model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
 
 
 
@@ -58,27 +58,7 @@ model.add(keras.layers.Dense(32, activation='relu'))
 model.add(keras.layers.Dense(2, activation='softmax'))
 
 
-# RNN Model
-
-
-#model.add(keras.layers.Conv2D(10, (5, 1), activation='relu', input_shape= input_shape))
-#model.add(keras.layers.BatchNormalization())
-#model.add(keras.layers.Conv2D(1, (5, 1), activation='relu'))
-#model.add(keras.layers.BatchNormalization())
-
-# A la sortie du réseau de convolution , on a un vecteur de dimension 4 , on utilise la methode squeeze pr eliminer une dim
-# et avoir un vecteur a 3 dimensions
-
-#model.add(keras.layers.Lambda(lambda q: K.squeeze(q, -1), name='squeeze_last_dim'))
-
-#model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64, return_sequences = True)))
-#model.add(keras.layers.Bidirectional(keras.layers.CuDNNLSTM(64)))
-
-#model.add(keras.layers.Dense(64, activation='relu'))
-#model.add(keras.layers.Dense(32, activation='relu'))
-#model.add(keras.layers.Dense(2, activation='softmax'))
-
-
+# Phase d'entrainement et de test
 
 sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
