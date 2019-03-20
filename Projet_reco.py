@@ -2,7 +2,6 @@
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
-from keras import backend as K
 
 images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
 labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
