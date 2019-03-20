@@ -8,7 +8,7 @@ images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.n
 labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
 
 x_train = images[0:5000][:][:][:]
-y_train = labels[0:5500]
+y_train = labels[0:5000]
 
 x_test = images[5000:len(images)][:][:][:]
 y_test = labels[5000:len(images)]
