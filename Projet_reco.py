@@ -46,6 +46,13 @@ model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
 
+
+model.add(keras.layers.Conv2D(120, (4, 4), activation='relu')) 
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.MaxPooling2D(2, 2))
+
+
+
 model.add(keras.layers.Conv2D(160, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
@@ -62,7 +69,7 @@ model.add(keras.layers.Dense(2, activation='softmax'))
 
 sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
 model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_test, y_test) ) #batch_size prend les echantillons 100 par 100
 
