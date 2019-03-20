@@ -54,7 +54,7 @@ model.add(keras.layers.MaxPooling2D(2, 2))
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(64, activation='relu'))
 model.add(keras.layers.Dense(32, activation='relu'))
-model.add(keras.layers.Dropout(0.08))
+model.add(keras.layers.Dropout(0.02))
 model.add(keras.layers.Dense(2, activation='softmax'))
 
 
