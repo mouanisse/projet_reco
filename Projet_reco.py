@@ -3,17 +3,14 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 
-images = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/train.npy')
-labels = np.load('/content/drive/My Drive/Colab Notebooks/no_dog_dataset/labels.npy')
+training_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/training_set.npy')
+testing_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/testing_set.npy')
+validation_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/validation_set.npy')
 
-x_train = images[0:4854][:][:][:]
-y_train = labels[0:4854]
+training_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/training_label.npy')
+testing_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/testing_label.npy')
+validation_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/validation_label.npy')
 
-x_val = images[4855:5461][:][:][:]
-y_val = labels[4855:5461]
-
-x_test = images[5462:len(images)][:][:][:]
-y_test = labels[5462:len(images)]
 
 # Variables
 
@@ -60,17 +57,18 @@ model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Dense(64, activation='relu'))
 model.add(keras.layers.BatchNormalization())
-model.add(keras.layers.Dense(2, activation='softmax'))
+model.add(keras.layers.Dense(36, activation='softmax'))
 
 
 # Phase d'entrainement et de test
 
 sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+model.compile(loss='sparse_categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(x_train, y_train, batch_size=100, epochs=10, validation_data=(x_val, y_val) ) #batch_size prend les echantillons 100 par 100
+model.fit(training_data, training_label, batch_size=100, epochs=10, validation_data=(validation_data, validation_label) ) 
+#batch_size prend les echantillons 100 par 100
 
-score = model.evaluate(x_test, y_test, verbose=0)
+score = model.evaluate(testing_data, testing_label, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
