@@ -28,24 +28,24 @@ model.add(keras.layers.Permute((2,1,3)))
 # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
 
-model.add(keras.layers.Conv2D(100, (5, 1), activation='relu')) #5
+model.add(keras.layers.Conv2D(60, (5, 1), activation='relu')) #5
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
 
 
-model.add(keras.layers.Conv2D(200, (3, 3), activation='relu'))
+model.add(keras.layers.Conv2D(120, (3, 3), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
 
 
 
-model.add(keras.layers.Conv2D(400, (3, 3), activation='relu')) 
+model.add(keras.layers.Conv2D(240, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
 
 
-model.add(keras.layers.Conv2D(800, (3, 3), activation='relu')) 
+model.add(keras.layers.Conv2D(480, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
