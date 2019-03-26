@@ -8,9 +8,9 @@ training_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/
 testing_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/testing_set.npy')
 validation_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/validation_set.npy')
 
-training_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/training_label.npy')
-testing_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/testing_label.npy')
-validation_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/validation_label.npy')
+training_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/train_label.npy')
+testing_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/test_label.npy')
+validation_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/validation_label.npy')
 
 
 # Variables
@@ -65,7 +65,7 @@ model.add(keras.layers.Dense(36, activation='softmax'))
 
 sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
 model.fit(training_data, training_label, batch_size=100, epochs=10, validation_data=(validation_data, validation_label) ) 
 #batch_size prend les echantillons 100 par 100
