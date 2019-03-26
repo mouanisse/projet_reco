@@ -1,6 +1,7 @@
 
 import tensorflow as tf
 from tensorflow import keras
+import kapre
 import numpy as np
 
 training_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/training_set.npy')
@@ -22,6 +23,8 @@ input_shape = (96, 128, 3)
 # ('None' represents the batch_size).
 
 model = keras.Sequential()
+
+model.add(
 model.add(keras.layers.Permute((2,1,3)))
 
 # On utilise la fonction Permute pr changer le format de l'entrée
