@@ -66,7 +66,7 @@ sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(training_data, training_label, batch_size=100, epochs=10, validation_data=(validation_data, validation_label) ) 
+model.fit(training_data, training_label, batch_size=1000, epochs=10, validation_data=(validation_data, validation_label) ) 
 #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(testing_data, testing_label, verbose=0)
