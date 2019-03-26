@@ -28,24 +28,24 @@ model.add(keras.layers.Permute((2,1,3)))
 # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
 
-model.add(keras.layers.Conv2D(20, (5, 1), activation='relu')) #5
+model.add(keras.layers.Conv2D(100, (5, 1), activation='relu')) #5
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
 
 
-model.add(keras.layers.Conv2D(40, (3, 3), activation='relu'))
+model.add(keras.layers.Conv2D(200, (3, 3), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))    # divise par 2 les dimensions de l'image
 
 
 
-model.add(keras.layers.Conv2D(80, (3, 3), activation='relu')) 
+model.add(keras.layers.Conv2D(400, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
 
 
-model.add(keras.layers.Conv2D(160, (3, 3), activation='relu')) 
+model.add(keras.layers.Conv2D(800, (3, 3), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 2))
 
@@ -66,7 +66,7 @@ sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
-model.fit(training_data, training_label, batch_size=500, epochs=10, validation_data=(validation_data, validation_label) ) 
+model.fit(training_data, training_label, batch_size=200, epochs=10, validation_data=(validation_data, validation_label) ) 
 #batch_size prend les echantillons 100 par 100
 
 score = model.evaluate(testing_data, testing_label, verbose=0)
