@@ -53,11 +53,9 @@ model.add(keras.layers.MaxPooling2D(2, 2))
 
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(32, activation='relu'))
-model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Dense(64, activation='relu'))
-model.add(keras.layers.BatchNormalization())
-model.add(keras.layers.Dense(5, activation='softmax'))
+model.add(keras.layers.Dense(35, activation='softmax'))
 
 
 # Phase d'entrainement et de test
