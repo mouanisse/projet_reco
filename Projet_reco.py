@@ -55,7 +55,7 @@ model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(32, activation='relu'))
 
 model.add(keras.layers.Dense(64, activation='relu'))
-model.add(keras.layers.Dense(35, activation='softmax'))
+model.add(keras.layers.Dense(5, activation='softmax'))
 
 
 # Phase d'entrainement et de test
