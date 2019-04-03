@@ -4,13 +4,13 @@ from tensorflow import keras
 import kapre
 import numpy as np
 
-training_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/training_set.npy')
-testing_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/testing_set.npy')
-validation_data = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/validation_set.npy')
+training_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_train_set.npy')
+testing_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_set.npy')
+validation_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_valid_set.npy')
 
-training_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/train_label.npy')
-testing_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/test_label.npy')
-validation_label = np.load('/content/drive/My Drive/Colab Notebooks/Google_dataset/spectro_dataset/validation_label.npy')
+training_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_train_label.npy')
+testing_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_label.npy')
+validation_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_validation_label.npy')
 
 
 # Variables
@@ -60,9 +60,8 @@ model.add(keras.layers.Dense(5, activation='softmax'))
 
 # Phase d'entrainement et de test
 
-sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 model.fit(training_data, training_label, batch_size=100, epochs=10, validation_data=(validation_data, validation_label) ) 
 #batch_size prend les echantillons 100 par 100
