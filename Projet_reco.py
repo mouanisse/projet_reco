@@ -28,7 +28,7 @@ model.add(keras.layers.Permute((2,1,3)))
 # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
 
-model.add(keras.layers.Conv2D(20, (5, 1), activation='relu')) 
+model.add(keras.layers.Conv2D(20, (5, 5), activation='relu')) 
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPooling2D(2, 1))
 
@@ -53,8 +53,10 @@ model.add(keras.layers.MaxPooling2D(2, 2))
 
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(32, activation='relu'))
+model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Dense(64, activation='relu'))
+model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Dense(5, activation='softmax'))
 
 
