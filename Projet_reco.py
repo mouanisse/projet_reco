@@ -145,14 +145,14 @@ class Oyez_Oyez:
         model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
-        checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
-                                                       monitor='val_acc', verbose=0, save_best_only=True,
-                                                       save_weights_only=False, mode='max', period=1)
+        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
+                                                       #monitor='val_acc', verbose=0, save_best_only=True,
+                                                       #save_weights_only=False, mode='max', period=1)
         # Save the path to the CNN model
-        self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
+        #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=10,
-                  validation_data=(self.validation_emotion_data, self.validation_emotion_label), callbacks=[checkpointer])
+        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=7,
+                  validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
 
         score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
         print('Test loss:', score[0])
@@ -179,4 +179,4 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  testing_word_label, validation_word_label, training_emotion_data, testing_emotion_data,
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
-obj.train_word_model()
+obj.train_emotion_model()
