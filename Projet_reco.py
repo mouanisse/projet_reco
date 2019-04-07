@@ -79,10 +79,7 @@ class Oyez_Oyez:
 
         model.add(keras.layers.Flatten())
         model.add(keras.layers.Dense(64, activation='relu'))
-        model.add(keras.layers.Dropout(0.5))
-        
         model.add(keras.layers.Dense(32, activation='relu'))
-        model.add(keras.layers.Dropout(0.5))
         
         model.add(keras.layers.Dense(5, activation='softmax'))
 
