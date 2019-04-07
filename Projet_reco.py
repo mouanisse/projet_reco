@@ -122,14 +122,14 @@ class Oyez_Oyez:
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
-        checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/word_model.hdf5",
-                                                       monitor='val_acc', verbose=0, save_best_only=True,
-                                                       save_weights_only=False, mode='max', period=1)
+        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/word_model.hdf5",
+                                                       #monitor='val_acc', verbose=0, save_best_only=True,
+                                                       #save_weights_only=False, mode='max', period=1)
         # Save the path to the CNN model
-        self.word_model_path = "/content/projet_reco/word_model.hdf5"
+        #self.word_model_path = "/content/projet_reco/word_model.hdf5"
 
         model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=10,
-                  validation_data=(self.validation_word_data, self.validation_word_label), callbacks=[checkpointer])
+                  validation_data=(self.validation_word_data, self.validation_word_label))#, callbacks=[checkpointer])
 
         score = model.evaluate(testing_word_data, testing_word_label, verbose=0)
         print('Test loss:', score[0])
