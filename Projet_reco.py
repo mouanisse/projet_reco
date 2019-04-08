@@ -141,7 +141,7 @@ class Oyez_Oyez:
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
 
-        model = self.create_emotion_model()
+        model = self.create_word_model()
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
