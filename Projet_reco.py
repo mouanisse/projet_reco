@@ -57,7 +57,7 @@ class Oyez_Oyez:
         # On utilise la fonction Permute pr changer le format de l'entrée
         # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
-        model.add(keras.layers.Conv2D(10, (5, 1), activation='relu'))
+        model.add(keras.layers.Conv2D(10, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 1))        # divise par 2 les dimensions de l'image
 
@@ -77,9 +77,9 @@ class Oyez_Oyez:
         model.add(keras.layers.MaxPooling2D(2, 2))
         
         
-        model.add(keras.layers.Conv2D(160, (3, 3), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
+        #model.add(keras.layers.Conv2D(160, (3, 3), activation='relu'))
+        #model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.MaxPooling2D(2, 2))
 
 
         model.add(keras.layers.Flatten())
