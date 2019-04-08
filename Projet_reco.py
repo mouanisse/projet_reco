@@ -81,7 +81,7 @@ class Oyez_Oyez:
         model.add(keras.layers.Dense(64, activation='relu'))
         model.add(keras.layers.Dense(32, activation='relu'))
         
-        model.add(keras.layers.Dense(5, activation='softmax'))
+        model.add(keras.layers.Dense(8, activation='softmax'))
 
         return model
 
