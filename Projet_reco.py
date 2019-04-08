@@ -67,9 +67,9 @@ class Oyez_Oyez:
         model.add(keras.layers.MaxPooling2D(2, 2))  # divise par 4 les dimensions de l'image
 
 
-        model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
+        #model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
+        #model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.MaxPooling2D(2, 2))
 
 
         #model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
@@ -83,8 +83,8 @@ class Oyez_Oyez:
 
 
         model.add(keras.layers.Flatten())
+        model.add(keras.layers.Dense(64, activation='relu'))
         model.add(keras.layers.Dense(32, activation='relu'))
-        model.add(keras.layers.Dense(16, activation='relu'))
         
         model.add(keras.layers.Dense(8, activation='softmax'))
 
