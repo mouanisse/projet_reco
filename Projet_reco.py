@@ -57,17 +57,17 @@ class Oyez_Oyez:
         # On utilise la fonction Permute pr changer le format de l'entrée
         # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
-        model.add(keras.layers.Conv2D(10, (5, 1), activation='relu'))
+        model.add(keras.layers.Conv2D(8, (5, 1), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 1))        # divise par 2 les dimensions de l'image
 
 
-        model.add(keras.layers.Conv2D(20, (3, 3), activation='relu'))
+        model.add(keras.layers.Conv2D(16, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))  # divise par 4 les dimensions de l'image
 
 
-        model.add(keras.layers.Conv2D(40, (3, 3), activation='relu'))
+        model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
 
@@ -83,8 +83,8 @@ class Oyez_Oyez:
 
 
         model.add(keras.layers.Flatten())
-        model.add(keras.layers.Dense(256, activation='relu'))
-        model.add(keras.layers.Dense(128, activation='relu'))
+        model.add(keras.layers.Dense(32, activation='relu'))
+        model.add(keras.layers.Dense(16, activation='relu'))
         
         model.add(keras.layers.Dense(8, activation='softmax'))
 
