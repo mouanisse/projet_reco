@@ -134,7 +134,7 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.word_model_path = "/content/projet_reco/word_model.hdf5"
 
-        model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=14,
+        model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7,
                   validation_data=(self.validation_word_data, self.validation_word_label))#, callbacks=[checkpointer])
 
         score = model.evaluate(testing_word_data, testing_word_label, verbose=0)
@@ -156,7 +156,7 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=7,
+        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=14,
                   validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
 
         score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
