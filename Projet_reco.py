@@ -52,7 +52,7 @@ class Oyez_Oyez:
         # 4CONV_LAYERS + 2FULLY_CONNECTED + 1SOFTMAX
 
         model = keras.Sequential()
-        model.add(keras.layers.Permute((2, 1, 3)))
+        #model.add(keras.layers.Permute((2, 1, 3)))
 
         # On utilise la fonction Permute pr changer le format de l'entrée
         # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
