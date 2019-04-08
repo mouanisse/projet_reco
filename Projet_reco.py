@@ -146,7 +146,7 @@ class Oyez_Oyez:
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
 
-        model = self.create_word_model()
+        model = self.create_emotion_model()
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
@@ -156,7 +156,7 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=14,
+        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=10,
                   validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
 
         score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
