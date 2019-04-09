@@ -95,12 +95,12 @@ class Oyez_Oyez:
         model = keras.Sequential()
 
         model.add(keras.layers.Conv2D(8, (5, 5), activation='relu'))
-        #model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
         model.add(keras.layers.Conv2D(16, (5, 5), activation='relu'))
-        #model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
 
@@ -177,4 +177,19 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  testing_word_label, validation_word_label, training_emotion_data, testing_emotion_data,
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
-obj.train_emotion_model()
+model = keras.models.load_model('/content/drive/My Drive/Colab Notebooks/Emotion_Voice_Detection_Model.h5')
+
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+        # ModelCheckPoint will save the model with the best validation accuracy
+        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
+                                                       #monitor='val_acc', verbose=0, save_best_only=True,
+                                                       #save_weights_only=False, mode='max', period=1)
+        # Save the path to the CNN model
+        #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
+
+model.fit(training_emotion_data, training_emotion_label, batch_size=100, epochs=10,
+      validation_data=(validation_emotion_data, validation_emotion_label))
+score = model.evaluate(testing_emotion_data, testing_emotion_label, verbose=0)
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
