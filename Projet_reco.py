@@ -99,31 +99,21 @@ class Oyez_Oyez:
 
         model = keras.Sequential()
 
-        model.add(keras.layers.Conv2D(20, (5, 5), activation='relu'))
+        model.add(keras.layers.Conv2D(8, (5, 5), input_shape=(129, 129, 1), strides=(1, 1), padding='same', activation='relu'))
         model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
+        model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
-        model.add(keras.layers.Conv2D(40, (3, 3), activation='relu'))
+        model.add(keras.layers.Conv2D(16, (5, 5), , padding='same', activation='relu'))
         model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
+        model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
-        
-        model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
-        
-        
-        model.add(keras.layers.Conv2D(160, (3, 3), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
-        model.add(keras.layers.MaxPooling2D(2, 2))
-
 
         model.add(keras.layers.Flatten())
-        model.add(keras.layers.Dense(3200, activation='relu'))
+        model.add(keras.layers.Dense(17424, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
-        model.add(keras.layers.Dense(1600, activation='relu'))
+        model.add(keras.layers.Dense(1024, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
         model.add(keras.layers.Dense(8, activation='softmax'))
