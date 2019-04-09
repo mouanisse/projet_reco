@@ -99,12 +99,12 @@ class Oyez_Oyez:
 
         model = keras.Sequential()
 
-        model.add(keras.layers.Conv2D(8, (5, 5), activation='relu'))
+        model.add(keras.layers.Conv2D(20, (5, 5), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
 
 
-        model.add(keras.layers.Conv2D(16, (5, 5), activation='relu'))
+        model.add(keras.layers.Conv2D(40, (5, 5), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
 
