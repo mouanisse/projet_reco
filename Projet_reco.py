@@ -57,24 +57,19 @@ class Oyez_Oyez:
         # On utilise la fonction Permute pr changer le format de l'entrée
         # On aura alors la shape (128,96,3) , et ca donne des résultats bien meilleurs.
 
-        model.add(keras.layers.Conv2D(40, (5, 1), activation='relu'))
+        model.add(keras.layers.Conv2D(20, (5, 1), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 1))        # divise par 2 les dimensions de l'image
 
 
-        model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
+        model.add(keras.layers.Conv2D(40, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))  # divise par 4 les dimensions de l'image
 
 
-        #model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
-        #model.add(keras.layers.BatchNormalization())
-        #model.add(keras.layers.MaxPooling2D(2, 2))
-
-
-        #model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
-        #model.add(keras.layers.BatchNormalization())
-        #model.add(keras.layers.MaxPooling2D(2, 2))
+        model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
+        model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.MaxPooling2D(2, 2))
         
         
         model.add(keras.layers.Conv2D(160, (3, 3), activation='relu'))
@@ -156,12 +151,12 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=10,
+        for i in range(40):
+            model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=1,
                   validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
-
-        score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
-        print('Test loss:', score[0])
-        print('Test accuracy:', score[1])
+            score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
+            print('Test loss:', score[0])
+            print('Test accuracy:', score[1])
 
 
 
