@@ -104,7 +104,7 @@ class Oyez_Oyez:
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
-        model.add(keras.layers.Conv2D(16, (5, 5), , padding='same', activation='relu'))
+        model.add(keras.layers.Conv2D(16, (5, 5), padding='same', activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
