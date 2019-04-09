@@ -108,16 +108,22 @@ class Oyez_Oyez:
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
         
+        
         model.add(keras.layers.Conv2D(80, (5, 5), activation='relu'))
+        model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.MaxPooling2D(2, 2))
+        
+        
+        model.add(keras.layers.Conv2D(160, (5, 5), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
 
 
         model.add(keras.layers.Flatten())
-        model.add(keras.layers.Dense(644, activation='relu'))
+        model.add(keras.layers.Dense(320, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
-        model.add(keras.layers.Dense(320, activation='relu'))
+        model.add(keras.layers.Dense(160, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
         model.add(keras.layers.Dense(8, activation='softmax'))
