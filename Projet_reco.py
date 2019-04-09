@@ -95,12 +95,12 @@ class Oyez_Oyez:
         model = keras.Sequential()
 
         model.add(keras.layers.Conv2D(8, (5, 5), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
         model.add(keras.layers.Conv2D(16, (5, 5), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
 
@@ -151,13 +151,11 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        for i in range(40):
-            model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=1,
-                  validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
-            score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
-            print('Test loss:', score[0])
-            print('Test accuracy:', score[1])
-
+        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=10,
+              validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
+        score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
+        print('Test loss:', score[0])
+        print('Test accuracy:', score[1])
 
 
     def load_trained_word_model(self):
