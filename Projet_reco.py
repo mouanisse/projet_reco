@@ -31,7 +31,7 @@ def flatten(dimData, images):
 img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
-
+print(img.shape)
 train_img = img[0:1607][:][:]
 test_img = img[1608:][:][:]
 
