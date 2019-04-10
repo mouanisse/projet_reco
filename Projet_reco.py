@@ -32,8 +32,8 @@ img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_i
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
 
-train_img = img[0:1607][:][:][:]
-test_img = img[1608:][:][:][:]
+train_img = img[0:1607][:][:]
+test_img = img[1608:][:][:]
 
 train_lab = label[0:1607]
 test_lab = label[1608:]
