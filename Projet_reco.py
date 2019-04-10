@@ -78,6 +78,7 @@ class Oyez_Oyez:
 
 
         model.add(keras.layers.Flatten())
+        model.add(keras.layers.Dense(1024, activation='relu'))
         model.add(keras.layers.Dense(128, activation='relu'))
         model.add(keras.layers.Dense(64, activation='relu'))
         model.add(keras.layers.Dense(32, activation='relu'))
@@ -152,7 +153,7 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=10,
+        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=20,
               validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
         score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
         print('Test loss:', score[0])
