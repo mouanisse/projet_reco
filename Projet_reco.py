@@ -21,6 +21,18 @@ testing_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion
 validation_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/validation_emotion_label.npy')
 
 
+img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
+label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
+
+img = img.reshape((-1,129, 129,1))
+
+train_img = img[0:1607][:][:][:]
+test_img = img[1608:end][:][:][:]
+
+train_lab = label[0:1607]
+test_lab = label[1608:end]
+
+
 
 class Oyez_Oyez:
 
@@ -113,7 +125,7 @@ class Oyez_Oyez:
         model.add(keras.layers.Dense(1024, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
-        model.add(keras.layers.Dense(8, activation='softmax'))
+        model.add(keras.layers.Dense(7, activation='softmax'))
 
         return model
 
@@ -143,8 +155,8 @@ class Oyez_Oyez:
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
 
-        model = self.create_word_model()
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        model = self.create_emotion_model()
+        model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
         #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
@@ -153,9 +165,9 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(self.training_emotion_data, self.training_emotion_label, batch_size=100, epochs=20,
-              validation_data=(self.validation_emotion_data, self.validation_emotion_label))#, callbacks=[checkpointer])
-        score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
+        model.fit(train_img, train_lab, batch_size=100, epochs=10)#, callbacks=[checkpointer])
+        
+        score = model.evaluate(test_img, test_lab, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
