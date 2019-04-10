@@ -31,7 +31,6 @@ def flatten(dimData, images):
 img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
-img = img.reshape((-1,129, 129,1))
 
 train_img = img[0:1607][:][:][:]
 test_img = img[1608:][:][:][:]
@@ -42,6 +41,8 @@ test_lab = label[1608:]
 dataDim = np.prod(img[0].shape)
 train_data  = flatten(dataDim, train_img)
 test_data = flatten(dataDim, test_img)
+train_data = train_data.reshape((-1,129, 129,1))
+test_data = test_data.reshape((-1,129, 129,1))
 train_lab = np.array(train_lab)
 test_lab = np.array(test_lab)
 
@@ -178,11 +179,12 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(train_img, train_lab, batch_size=100, epochs=10)#, callbacks=[checkpointer])
+        for i in range(40):
+            model.fit(train_img, train_lab, epochs=1, verbose=1)#, callbacks=[checkpointer])
         
-        score = model.evaluate(test_img, test_lab, verbose=0)
-        print('Test loss:', score[0])
-        print('Test accuracy:', score[1])
+            score = model.evaluate(test_img, test_lab)
+            print('Test loss:', score[0])
+            print('Test accuracy:', score[1])
 
 
     def load_trained_word_model(self):
