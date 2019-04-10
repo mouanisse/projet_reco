@@ -78,6 +78,7 @@ class Oyez_Oyez:
 
 
         model.add(keras.layers.Flatten())
+        model.add(keras.layers.Dense(128, activation='relu'))
         model.add(keras.layers.Dense(64, activation='relu'))
         model.add(keras.layers.Dense(32, activation='relu'))
         
