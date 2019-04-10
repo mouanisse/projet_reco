@@ -141,7 +141,7 @@ class Oyez_Oyez:
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
 
-        model = self.create_emotion_model()
+        model = self.create_word_model()
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
@@ -177,19 +177,5 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  testing_word_label, validation_word_label, training_emotion_data, testing_emotion_data,
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
-model = keras.models.load_model('/content/drive/My Drive/Colab Notebooks/Emotion_Voice_Detection_Model.h5')
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-        # ModelCheckPoint will save the model with the best validation accuracy
-        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
-                                                       #monitor='val_acc', verbose=0, save_best_only=True,
-                                                       #save_weights_only=False, mode='max', period=1)
-        # Save the path to the CNN model
-        #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
-
-model.fit(training_emotion_data, training_emotion_label, batch_size=100, epochs=10,
-      validation_data=(validation_emotion_data, validation_emotion_label))
-score = model.evaluate(testing_emotion_data, testing_emotion_label, verbose=0)
-print('Test loss:', score[0])
-print('Test accuracy:', score[1])
+obj.train_emotion_model()
