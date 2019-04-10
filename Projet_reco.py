@@ -122,13 +122,11 @@ class Oyez_Oyez:
 
         model = keras.Sequential()
 
-        model.add(keras.layers.Conv2D(8, (5, 5), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.Conv2D(8, (5, 5), strides=(1, 1), input_shape=(129, 129, 1), padding='same', activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
-        model.add(keras.layers.Conv2D(16, (5, 5), activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.Conv2D(16, (5, 5), padding='same', activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
 
@@ -170,7 +168,7 @@ class Oyez_Oyez:
         "This function trains our model for Speech Emotion Recognition"
 
         model = self.create_emotion_model()
-        model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
         #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
