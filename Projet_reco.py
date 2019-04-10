@@ -20,6 +20,13 @@ training_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotio
 testing_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/testing_emotion_label.npy')
 validation_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/validation_emotion_label.npy')
 
+# Flatten data
+def flatten(dimData, images):
+    images = np.array(images)
+    temp=max(abs(images.min()),abs(images.max()))
+    images = (((images/temp)+1)/2)-0.5
+    return images
+
 
 img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
@@ -31,6 +38,12 @@ test_img = img[1608:][:][:][:]
 
 train_lab = label[0:1607]
 test_lab = label[1608:]
+
+dataDim = np.prod(img[0].shape)
+train_data  = flatten(dataDim, train_img)
+test_data = flatten(dataDim, test_img)
+train_lab = np.array(train_lab)
+test_lab = np.array(test_lab)
 
 
 
