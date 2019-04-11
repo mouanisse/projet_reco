@@ -185,7 +185,7 @@ class Oyez_Oyez:
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-        model.fit(train_images_res, train_labels, epochs=10, verbose=1)#, callbacks=[checkpointer])
+        model.fit(train_images_res, train_labels, epochs=8, verbose=1)#, callbacks=[checkpointer])
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
