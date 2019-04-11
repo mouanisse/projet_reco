@@ -46,6 +46,9 @@ def flatten(images):
 
 train_data = flatten(train_images)
 test_data = flatten(test_images)
+training_emotion_data = flatten(training_emotion_data)
+testing_emotion_data = flatten(testing_emotion_data)
+validation_emotion_data = flatten(validation_emotion_data)
 train_labels = np.array(train_labels)
 test_labels = np.array(test_labels)
 train_images_res = train_data.reshape((-1, 129, 129, 1))
