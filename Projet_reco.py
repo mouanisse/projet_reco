@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 
 
@@ -20,6 +21,20 @@ training_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotio
 testing_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/testing_emotion_label.npy')
 validation_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/validation_emotion_label.npy')
 
+
+# 3A dataset
+images = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
+labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
+
+
+# Break data into training and test sets
+train_images, test_images, train_labels, test_labels = [], [], [], []
+train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.33, random_state=42)
+print('Number of training images: ', len(train_images))
+print('Number of testimg images: ', len(test_images))
+
+
+
 # Flatten data
 def flatten(images):
     images = np.array(images)
@@ -28,33 +43,14 @@ def flatten(images):
     return images
 
 
-img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
-label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
-
-train_img = img[0:1919][:][:][:]
-val_img = img[1920:2159][:][:][:]
-test_img = img[2160:][:][:][:]
-
-
-train_lab = label[0:1919]
-val_lab = label[1920:2159]
-test_lab = label[2160:]
-
-
-dataDim = np.prod(img[0].shape)
-
-train_img  = flatten(train_img)
-val_img = flatten(val_img)
-test_img = flatten(test_img)
-
-train_lab = np.array(train_lab)
-test_lab = np.array(test_lab)
-
-
-train_img = train_img.reshape((-1,129,129,1))
-val_img = val_img.reshape((-1,129,129,1))
-test_img = test_img.reshape((-1,129,129,1))
+dataDim = np.prod(images[0].shape)
+train_data = flatten(dataDim, train_images)
+test_data = flatten(dataDim, test_images)
+train_labels = np.array(train_labels)
+test_labels = np.array(test_labels)
+train_images_res = train_data.reshape((-1, 129, 129, 1))
+test_images_res = test_data.reshape((-1, 129, 129, 1))
 
 
 class Oyez_Oyez:
@@ -189,9 +185,9 @@ class Oyez_Oyez:
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-        model.fit(train_img, train_lab, epochs=5, validation_data=(val_img, val_lab), verbose=1)#, callbacks=[checkpointer])
+        model.fit(train_images_res, train_labels, epochs=10, verbose=1)#, callbacks=[checkpointer])
             
-        score = model.evaluate(test_img, test_lab, verbose=0)
+        score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
