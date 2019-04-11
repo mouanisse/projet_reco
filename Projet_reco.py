@@ -36,7 +36,7 @@ print('Number of testimg images: ', len(test_images))
 
 
 # Flatten data
-def flatten(dataDim, images):
+def flatten(images):
     images = np.array(images)
     temp=max(abs(images.min()),abs(images.max()))
     images = (((images/temp)+1)/2)-0.5
@@ -44,9 +44,8 @@ def flatten(dataDim, images):
 
 
 
-dataDim = np.prod(images[0].shape)
-train_data = flatten(dataDim, train_images)
-test_data = flatten(dataDim, test_images)
+train_data = flatten(train_images)
+test_data = flatten(test_images)
 train_labels = np.array(train_labels)
 test_labels = np.array(test_labels)
 train_images_res = train_data.reshape((-1, 129, 129, 1))
@@ -126,12 +125,12 @@ class Oyez_Oyez:
         model = keras.Sequential()
 
         model.add(keras.layers.Conv2D(8, (5, 5), strides=(1, 1), input_shape=(129, 129, 1), padding='same', activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
         model.add(keras.layers.Conv2D(16, (5, 5), padding='same', activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
 
