@@ -44,12 +44,12 @@ def flatten(images):
 
 
 
-#train_data = flatten(train_images)
-#test_data = flatten(test_images)
+train_data = flatten(train_images)
+test_data = flatten(test_images)
 train_labels = np.array(train_labels)
 test_labels = np.array(test_labels)
-train_images_res = train_images.reshape((-1, 129, 129, 1))
-test_images_res = test_images.reshape((-1, 129, 129, 1))
+train_images_res = train_data.reshape((-1, 129, 129, 1))
+test_images_res = test_data.reshape((-1, 129, 129, 1))
 
 
 class Oyez_Oyez:
@@ -170,7 +170,7 @@ class Oyez_Oyez:
         "This function trains our model for Speech Emotion Recognition"
 
         model = self.create_emotion_model()
-        model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
+        model.compile(loss='categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
         #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
@@ -180,9 +180,10 @@ class Oyez_Oyez:
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-        model.fit(train_images_res, train_labels, epochs=7, verbose=1)#, callbacks=[checkpointer])
+        model.fit(self.training_emotion_data, self.training_emotion_label, epochs=7,
+                  validation_data=(self.validation_emotion_data, self.validation_emotion_label), verbose=1)#, callbacks=[checkpointer])
             
-        score = model.evaluate(test_images_res, test_labels, verbose=0)
+        score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
