@@ -179,11 +179,11 @@ class Oyez_Oyez:
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-            model.fit(train_img, train_lab, epochs=10, verbose=1)#, callbacks=[checkpointer])
+        model.fit(train_img, train_lab, epochs=10, verbose=1)#, callbacks=[checkpointer])
             
-            score = model.evaluate(test_img, test_lab, verbose=0)
-            print('Test loss:', score[0])
-            print('Test accuracy:', score[1])
+        score = model.evaluate(test_img, test_lab, verbose=0)
+        print('Test loss:', score[0])
+        print('Test accuracy:', score[1])
 
 
     def load_trained_word_model(self):
