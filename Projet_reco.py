@@ -48,8 +48,8 @@ def flatten(images):
 #test_data = flatten(test_images)
 train_labels = np.array(train_labels)
 test_labels = np.array(test_labels)
-train_images_res = train_data.reshape((-1, 129, 129, 1))
-test_images_res = test_data.reshape((-1, 129, 129, 1))
+train_images_res = train_images.reshape((-1, 129, 129, 1))
+test_images_res = test_images.reshape((-1, 129, 129, 1))
 
 
 class Oyez_Oyez:
