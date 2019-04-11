@@ -36,7 +36,7 @@ print('Number of testimg images: ', len(test_images))
 
 
 # Flatten data
-def flatten(images):
+def flatten(dataDim, images):
     images = np.array(images)
     temp=max(abs(images.min()),abs(images.max()))
     images = (((images/temp)+1)/2)-0.5
