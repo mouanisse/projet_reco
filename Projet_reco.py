@@ -29,7 +29,7 @@ labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotio
 
 # Break data into training and test sets
 train_images, test_images, train_labels, test_labels = [], [], [], []
-train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.33, random_state=42)
+train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.25, random_state=42)
 print('Number of training images: ', len(train_images))
 print('Number of testimg images: ', len(test_images))
 
@@ -98,19 +98,17 @@ class Oyez_Oyez:
         model.add(keras.layers.MaxPooling2D(2, 2))  # divise par 4 les dimensions de l'image
 
 
-        model.add(keras.layers.Conv2D(80, (4, 4), activation='relu'))
+        model.add(keras.layers.Conv2D(80, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
         
         
-        model.add(keras.layers.Conv2D(160, (5, 5), activation='relu'))
+        model.add(keras.layers.Conv2D(160, (3, 3), activation='relu'))
         model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(2, 2))
 
 
         model.add(keras.layers.Flatten())
-        model.add(keras.layers.Dense(1024, activation='relu'))
-        model.add(keras.layers.Dense(128, activation='relu'))
         model.add(keras.layers.Dense(64, activation='relu'))
         model.add(keras.layers.Dense(32, activation='relu'))
         
