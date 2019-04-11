@@ -178,8 +178,8 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        for i in range(40):
-            model.fit(train_img, train_lab, epochs=1, verbose=1)#, callbacks=[checkpointer])
+        
+            model.fit(train_img, train_lab, epochs=10, verbose=1)#, callbacks=[checkpointer])
             
             score = model.evaluate(test_img, test_lab, verbose=0)
             print('Test loss:', score[0])
