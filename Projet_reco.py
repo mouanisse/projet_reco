@@ -31,8 +31,6 @@ def flatten(dimData, images):
 img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
-img = img.reshape((-1,129, 129,1))
-print(img.shape)
 
 train_img = img[0:1607][:][:][:]
 test_img = img[1608:][:][:][:]
@@ -41,11 +39,12 @@ train_lab = label[0:1607]
 test_lab = label[1608:]
 
 dataDim = np.prod(img[0].shape)
-train_data  = flatten(dataDim, train_img)
-test_data = flatten(dataDim, test_img)
+train_img  = flatten(dataDim, train_img)
+test_img = flatten(dataDim, test_img)
 train_lab = np.array(train_lab)
 test_lab = np.array(test_lab)
-
+train_img = train_img.reshape((-1,129,129,1))
+test_img = test_img.reshape((-1,129,129,1))
 
 
 class Oyez_Oyez:
@@ -122,13 +121,13 @@ class Oyez_Oyez:
 
         model = keras.Sequential()
 
-        model.add(keras.layers.Conv2D(8, (10, 10), strides=(1, 1), input_shape=(129, 129, 1), padding='same', activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        model.add(keras.layers.Conv2D(8, (5, 5), strides=(1, 1), input_shape=(129, 129, 1), padding='same', activation='relu'))
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
         model.add(keras.layers.Conv2D(16, (5, 5), padding='same', activation='relu'))
-        model.add(keras.layers.BatchNormalization())
+        #model.add(keras.layers.BatchNormalization())
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)))
         
 
@@ -179,11 +178,12 @@ class Oyez_Oyez:
         # Save the path to the CNN model
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
-        model.fit(train_data, train_lab, epochs=6, verbose=1)#, callbacks=[checkpointer])
-        
-        score = model.evaluate(test_data, test_lab, verbose=0)
-        print('Test loss:', score[0])
-        print('Test accuracy:', score[1])
+        for i in range(40):
+            model.fit(train_img, train_lab, epochs=1, verbose=1)#, callbacks=[checkpointer])
+            
+            score = model.evaluate(test_img, test_lab, verbose=0)
+            print('Test loss:', score[0])
+            print('Test accuracy:', score[1])
 
 
     def load_trained_word_model(self):
