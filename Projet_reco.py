@@ -54,7 +54,7 @@ test_images_res = test_data.reshape((-1, 129, 129, 1))
 
 training_emotion_data = training_emotion_data.reshape((-1, 129, 129, 1))
 testing_emotion_data = testing_emotion_data.reshape((-1, 129, 129, 1))
-training_emotion_data = training_emotion_data.reshape((-1, 129, 129, 1))
+validation_emotion_data = validation_emotion_data.reshape((-1, 129, 129, 1))
 
 
 class Oyez_Oyez:
