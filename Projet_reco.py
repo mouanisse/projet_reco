@@ -32,18 +32,28 @@ img = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_i
 label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
 
-train_img = img[0:1607][:][:][:]
-test_img = img[1608:][:][:][:]
+train_img = img[0:1919][:][:][:]
+val_img = img[1920:2159][:][:][:]
+test_img = img[2160:][:][:][:]
 
-train_lab = label[0:1607]
-test_lab = label[1608:]
+
+train_lab = label[0:1919]
+val_lab = label[1920:2159]
+test_lab = label[2160:]
+
 
 dataDim = np.prod(img[0].shape)
+
 train_img  = flatten(dataDim, train_img)
+val_img = flatten(dataDim, val_img)
 test_img = flatten(dataDim, test_img)
+
 train_lab = np.array(train_lab)
 test_lab = np.array(test_lab)
+
+
 train_img = train_img.reshape((-1,129,129,1))
+val_img = val_img.reshape((-1,129,129,1))
 test_img = test_img.reshape((-1,129,129,1))
 
 
@@ -179,7 +189,7 @@ class Oyez_Oyez:
         #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-        model.fit(train_img, train_lab, epochs=4, verbose=1)#, callbacks=[checkpointer])
+        model.fit(train_img, train_lab, epochs=5, validation_data=(val_img, val_lab), verbose=1)#, callbacks=[checkpointer])
             
         score = model.evaluate(test_img, test_lab, verbose=0)
         print('Test loss:', score[0])
