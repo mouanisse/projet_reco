@@ -32,7 +32,7 @@ train_images, test_images, train_labels, test_labels = [], [], [], []
 train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.25, random_state=42)
 print('Number of training images: ', len(train_images))
 print('Number of testimg images: ', len(test_images))
-
+print(images.shape)
 
 
 # Flatten data
