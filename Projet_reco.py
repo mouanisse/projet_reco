@@ -34,15 +34,15 @@ label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion
 img = img.reshape((-1,129, 129,1))
 print(img.shape)
 
-train_img = img[0:1607][:][:][:]
-test_img = img[1608:][:][:][:]
+train_data = img[0:1607][:][:][:]
+test_data = img[1608:][:][:][:]
 
 train_lab = label[0:1607]
 test_lab = label[1608:]
 
 dataDim = np.prod(img[0].shape)
-train_data  = flatten(dataDim, train_img)
-test_data = flatten(dataDim, test_img)
+#train_data  = flatten(dataDim, train_img)
+#test_data = flatten(dataDim, test_img)
 train_lab = np.array(train_lab)
 test_lab = np.array(test_lab)
 
