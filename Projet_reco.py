@@ -182,20 +182,13 @@ class Oyez_Oyez:
         model = self.create_emotion_model()
         model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
-        # ModelCheckPoint will save the model with the best validation accuracy
-        checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.hdf5",
-         monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
-        
-        # Save the path to the CNN model
-        #self.emotion_model_path = "/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.hdf5"
-
-        
         model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1, callbacks=[checkpointer])
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
-
+        
+        model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
 
     def load_trained_word_model(self):
 
