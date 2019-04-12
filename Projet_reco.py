@@ -177,7 +177,7 @@ class Oyez_Oyez:
         model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1)
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
-        model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
+        #model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
                       
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
