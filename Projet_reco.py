@@ -160,7 +160,7 @@ class Oyez_Oyez:
         model = self.create_word_model()
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']
 
-        model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7, validation_data=(self.validation_word_data, self.validation_word_label) )
+        #model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7, validation_data=(self.validation_word_data, self.validation_word_label) )
 
         score = model.evaluate(testing_word_data, testing_word_label, verbose=0)
         print('Test loss:', score[0])
