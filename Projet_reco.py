@@ -158,9 +158,9 @@ class Oyez_Oyez:
         "This function trains our model for Speech Word Recognition"
 
         model = self.create_word_model()
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']
+        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-        #model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7, validation_data=(self.validation_word_data, self.validation_word_label) )
+        model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7, validation_data=(self.validation_word_data, self.validation_word_label) )
 
         score = model.evaluate(testing_word_data, testing_word_label, verbose=0)
         print('Test loss:', score[0])
@@ -177,10 +177,11 @@ class Oyez_Oyez:
         model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1)
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
-        #model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
-                      
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
+        
+        model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
+        
 
     def load_trained_word_model(self):
 
