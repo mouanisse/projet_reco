@@ -30,9 +30,6 @@ labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotio
 # Break data into training and test sets
 train_images, test_images, train_labels, test_labels = [], [], [], []
 train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.25, random_state=42)
-print('Number of training images: ', len(train_images))
-print('Number of testimg images: ', len(test_images))
-print(images.shape)
 
 
 # Flatten data: the values are between -9 and 4 , so we should replace them by values between 0 and 1
@@ -144,7 +141,7 @@ class Oyez_Oyez:
         model.add(keras.layers.Dense(1024, activation='relu'))
         model.add(keras.layers.Dropout(0.5))
 
-        model.add(keras.layers.Dense(8, activation='softmax'))
+        model.add(keras.layers.Dense(7, activation='softmax'))
 
         return model
 
@@ -178,17 +175,16 @@ class Oyez_Oyez:
         model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
-        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
-                                                       #monitor='val_acc', verbose=0, save_best_only=True,
-                                                       #save_weights_only=False, mode='max', period=1)
+        checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
+             monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
+        
         # Save the path to the CNN model
-        #self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
+        self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
 
         
-        model.fit(self.training_emotion_data, self.training_emotion_label, epochs=7,
-                 validation_data=(self.validation_emotion_data, self.validation_emotion_label), verbose=1)#, callbacks=[checkpointer])
+        model.fit(train_images_res, train_labels, epochs=7, verbose=1, callbacks=[checkpointer])
             
-        score = model.evaluate(self.testing_emotion_data, self.testing_emotion_label, verbose=0)
+        score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
