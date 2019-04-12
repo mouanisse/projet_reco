@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-
+################################################ RAVDESS DATASET ##############################################
 
 training_word_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_train_set.npy')
 testing_word_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_set.npy')
@@ -21,16 +21,22 @@ training_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotio
 testing_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/testing_emotion_labels.npy')
 validation_emotion_label = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/validation_emotion_labels.npy')
 
+training_emotion_data = training_emotion_data.reshape((-1, 129, 129, 1))
+testing_emotion_data = testing_emotion_data.reshape((-1, 129, 129, 1))
+validation_emotion_data = validation_emotion_data.reshape((-1, 129, 129, 1))
 
-# 3A dataset
+
+########################################### 3A DATASET ################################################
+
+
 images = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
 labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
 
 
-# Break data into training and test sets
-train_images, test_images, train_labels, test_labels = [], [], [], []
-train_images, test_images, train_labels, test_labels = train_test_split(images, labels, test_size=0.25, random_state=42)
-
+# Break data into training , validation and test sets
+train_images, test_val_images, test_images, val_images, train_labels, test_val_labels, test_labels, val_labels = [], [], [], [], [], [], [], []
+train_images, test_val_images, train_labels, test_val_labels = train_test_split(images, labels, test_size=0.20, random_state=42)
+test_images, val_images, test_labels, val_labels = train_test_split(test_val_images, test_val_labels, test_size=0.50, random_state=42)
 
 # Flatten data: the values are between -9 and 4 , so we should replace them by values between 0 and 1
 def flatten(images):
@@ -42,16 +48,18 @@ def flatten(images):
 
 
 train_data = flatten(train_images)
+val_data = flatten(val_images)
 test_data = flatten(test_images)
+
 train_labels = np.array(train_labels)
+val_labels = np.array(val_labels)
 test_labels = np.array(test_labels)
+
+
 train_images_res = train_data.reshape((-1, 129, 129, 1))
+val_images_res = val_data.reshape((-1, 129, 129, 1))
 test_images_res = test_data.reshape((-1, 129, 129, 1))
 
-
-training_emotion_data = training_emotion_data.reshape((-1, 129, 129, 1))
-testing_emotion_data = testing_emotion_data.reshape((-1, 129, 129, 1))
-validation_emotion_data = validation_emotion_data.reshape((-1, 129, 129, 1))
 
 
 class Oyez_Oyez:
@@ -175,14 +183,14 @@ class Oyez_Oyez:
         model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
         # ModelCheckPoint will save the model with the best validation accuracy
-        checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/emotion_model.hdf5",
-             monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
+        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.hdf5",
+         #monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
         
         # Save the path to the CNN model
-        self.emotion_model_path = "/content/projet_reco/emotion_model.hdf5"
+        #self.emotion_model_path = "/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.hdf5"
 
         
-        model.fit(train_images_res, train_labels, epochs=7, verbose=1, callbacks=[checkpointer])
+        model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1) #callbacks=[checkpointer])
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
