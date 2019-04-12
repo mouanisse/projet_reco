@@ -158,14 +158,7 @@ class Oyez_Oyez:
         "This function trains our model for Speech Word Recognition"
 
         model = self.create_word_model()
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-        # ModelCheckPoint will save the model with the best validation accuracy
-        #checkpointer = keras.callbacks.ModelCheckpoint(filepath="/content/projet_reco/word_model.hdf5",
-                                                       #monitor='val_acc', verbose=0, save_best_only=True,
-                                                       #save_weights_only=False, mode='max', period=1)
-        # Save the path to the CNN model
-        #self.word_model_path = "/content/projet_reco/word_model.hdf5"
+        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']
 
         model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7,
                   validation_data=(self.validation_word_data, self.validation_word_label))#, callbacks=[checkpointer])
@@ -174,7 +167,7 @@ class Oyez_Oyez:
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
-
+      
 
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
@@ -182,7 +175,7 @@ class Oyez_Oyez:
         model = self.create_emotion_model()
         model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
-        model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1, callbacks=[checkpointer])
+        model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1)
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
