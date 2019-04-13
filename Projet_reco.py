@@ -209,4 +209,4 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
 
-obj.train_emotion_model()
+obj.train_word_model()
