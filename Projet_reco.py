@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-################################################ RAVDESS DATASET ##############################################
+################################################ Oyez_Oyez DATASET ##############################################
 
 training_word_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_train_set.npy')
 testing_word_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_set.npy')
@@ -12,6 +12,8 @@ validation_word_data = np.load('/content/drive/My Drive/Colab Notebooks/5_words_
 training_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_train_label.npy')
 testing_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_label.npy')
 validation_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_validation_label.npy')
+
+################################################ RAVDESS DATASET ##############################################
 
 training_emotion_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/training_emotion_images.npy')
 testing_emotion_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/testing_emotion_images.npy')
@@ -162,7 +164,7 @@ class Oyez_Oyez:
 
         model.fit(self.training_word_data, self.training_word_label, batch_size=100, epochs=7, validation_data=(self.validation_word_data, self.validation_word_label) )
 
-        score = model.evaluate(testing_word_data, testing_word_label, verbose=0)
+        score = model.evaluate(self.testing_word_data, self.testing_word_label, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
@@ -203,4 +205,4 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
 
-obj.train_emotion_model()
+obj.train_word_model()
