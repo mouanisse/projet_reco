@@ -171,7 +171,8 @@ class Oyez_Oyez:
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
 
-      
+        model.save("/content/drive/My Drive/Colab Notebooks/5_words_dataset/word_model.h5")
+        
 
     def train_emotion_model(self):
         "This function trains our model for Speech Emotion Recognition"
