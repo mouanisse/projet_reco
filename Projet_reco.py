@@ -13,7 +13,6 @@ training_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_d
 testing_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_test_label.npy')
 validation_word_label = np.load('/content/drive/My Drive/Colab Notebooks/5_words_dataset/reduce_validation_label.npy')
 
-print(training_word_data.shape)
 
 ################################################ RAVDESS DATASET ##############################################
 
