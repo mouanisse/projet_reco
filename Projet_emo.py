@@ -23,15 +23,22 @@ test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, t
 
 model = keras.Sequential()
 
-model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(216, 1), activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(216, 1)))
+model.add(keras.layers.Activation('relu'))
+
+model.add(keras.layers.Conv1D(128, 5,padding='same'))
+model.add(keras.layers.Activation('relu'))
+
 model.add(keras.layers.Dropout(0.1))
+
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 
-model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
-model.add(keras.layers.Dropout(0.1))
+model.add(keras.layers.Conv1D(128, 5,padding='same'))
+model.add(keras.layers.Activation('relu'))
 
-model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
+model.add(keras.layers.Conv1D(128, 5,padding='same'))
+model.add(keras.layers.Activation('relu'))
 
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(8, activation='softmax'))
