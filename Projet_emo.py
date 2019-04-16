@@ -36,14 +36,14 @@ model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(8, activation='softmax'))
 
-opt = keras.optimizers.rmsprop(lr=0.00001, decay=1e-6)
+#opt = keras.optimizers.rmsprop(lr=0.00001, decay=1e-6)
 
 #**************************************** Compile and train our CNN model *******************************************
 
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='opt', metrics=['accuracy'])
+model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=7, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=16, epochs=700, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
