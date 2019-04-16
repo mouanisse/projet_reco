@@ -18,7 +18,7 @@ test_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/t
 
 model = keras.Sequential()
 
-model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(216, 1)))
+model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(259, 1)))
 model.add(keras.layers.Activation('relu'))
 
 model.add(keras.layers.Conv1D(128, 5,padding='same'))
