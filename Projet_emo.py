@@ -7,15 +7,10 @@ from sklearn.model_selection import train_test_split
 
 #********************************************* Loading the dataset **************************************************
 
-dataset_features = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_features.npy')
-dataset_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_labels.npy')
-
-
-#********************************** Break data into training , validation and test sets *****************************************************
-
-
-train_data, test_val_data, train_labels, test_val_labels = train_test_split(dataset_features, dataset_labels, test_size=0.20, random_state=42)
-test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.50, random_state = 42)
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions.npy')
+test_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels.npy')
+test_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels.npy')
 
 
 
@@ -50,9 +45,9 @@ model.summary()
 #**************************************** Compile and train our CNN model *******************************************
 
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=10, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=10)
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
