@@ -8,9 +8,10 @@ from sklearn.model_selection import train_test_split
 #********************************************* Loading the dataset **************************************************
 
 train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions.npy')
-test_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions.npy')
 train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels.npy')
-test_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels.npy')
+test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_size=0.5, random_state=42)
 
 
 
@@ -45,7 +46,7 @@ model.summary()
 #**************************************** Compile and train our CNN model *******************************************
 
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'], validation_data=(val_data, val_labels))
 
 model.fit(train_data, train_labels, batch_size=100, epochs=160)
 
