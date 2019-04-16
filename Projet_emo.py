@@ -11,7 +11,7 @@ train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/tr
 test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions.npy')
 train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels.npy')
 test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels.npy')
-test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_size=0.5, random_state=42)
+test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
 
