@@ -22,10 +22,8 @@ model = keras.Sequential()
 model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(259, 1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
-model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
-
-#model.add(keras.layers.Dropout(0.1))
 
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
