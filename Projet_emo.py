@@ -46,7 +46,7 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=160, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=100, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
