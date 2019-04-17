@@ -52,7 +52,7 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=80, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=60, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 model.save("emotion_model_mfcc.h5")
