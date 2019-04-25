@@ -19,7 +19,7 @@ test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, t
 
 model = keras.Sequential()
 
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
+model.add(keras.layers.Conv1D(512, 5, padding='same', input_shape=(517,1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
