@@ -21,22 +21,24 @@ model = keras.Sequential()
 
 model.add(keras.layers.Conv1D(32, 5, padding='same', input_shape=(517,1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Conv1D(64, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
-
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
-
 model.add(keras.layers.MaxPooling1D(pool_size=8))
+
 
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(7, activation='softmax'))
