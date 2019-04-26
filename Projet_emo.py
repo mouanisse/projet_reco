@@ -36,9 +36,6 @@ model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Flatten())
