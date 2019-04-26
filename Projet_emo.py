@@ -42,6 +42,8 @@ model.add(keras.layers.MaxPooling1D(pool_size=4))
 
 
 model.add(keras.layers.Flatten())
+model.add(keras.layers.Dense(32, activation='relu'))
+model.add(keras.layers.Dense(64, activation='relu'))
 model.add(keras.layers.Dense(7, activation='softmax'))
 
 
