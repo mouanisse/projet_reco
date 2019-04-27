@@ -27,7 +27,13 @@ model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
+model.add(keras.layers.BatchNormalization())
+
+model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
+model.add(keras.layers.BatchNormalization())
+
+model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
@@ -59,7 +65,7 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=500, epochs=100, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=500, epochs=70, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 model.save("emotion_model_mfcc.h5")
