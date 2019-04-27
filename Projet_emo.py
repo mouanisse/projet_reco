@@ -7,10 +7,10 @@ from sklearn.model_selection import train_test_split
 
 #********************************************* Loading the dataset **************************************************
 
-train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_mini.npy')
-test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_mini.npy')
-train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_mini.npy')
-test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_mini.npy')
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_mini2.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_mini2.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_mini2.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_mini2.npy')
 test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
