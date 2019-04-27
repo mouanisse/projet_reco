@@ -7,10 +7,10 @@ from sklearn.model_selection import train_test_split
 
 #********************************************* Loading the dataset **************************************************
 
-train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_enseirb.npy')
-test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_enseirb.npy')
-train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_enseirb.npy')
-test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_enseirb.npy')
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_mini.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_mini.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_mini.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_mini.npy')
 test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
@@ -33,25 +33,7 @@ model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
-model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
-model.add(keras.layers.BatchNormalization())
-
-model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Conv1D(512, 5, padding='same', activation='relu'))
@@ -71,7 +53,7 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=500, epochs=200, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=100, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 model.save("emotion_model_mfcc.h5")
