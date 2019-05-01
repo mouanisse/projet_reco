@@ -147,7 +147,7 @@ class Oyez_Oyez:
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
         
-        model.save("'/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model_3A.h5")
+        model.save("'/content/drive/My Drive/emotion_model_3A.h5")
         
 
     def load_trained_word_model(self):
