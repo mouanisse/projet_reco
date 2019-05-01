@@ -32,8 +32,8 @@ validation_emotion_data = validation_emotion_data.reshape((-1, 129, 129, 1))
 ########################################### 3A DATASET ################################################
 
 
-images = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images.npy')
-labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_label.npy')
+images = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_images_3A.npy')
+labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_labels_3A.npy')
 
 
 # Break data into training , validation and test sets
@@ -179,13 +179,13 @@ class Oyez_Oyez:
         model = self.create_emotion_model()
         model.compile(loss='sparse_categorical_crossentropy', optimizer=tf.train.AdamOptimizer(), metrics=['accuracy'])
 
-        model.fit(train_images_res, train_labels, epochs=7, validation_data=(val_images_res, val_labels), verbose=1)
+        model.fit(train_images_res, train_labels, epochs=10, validation_data=(val_images_res, val_labels), verbose=1)
             
         score = model.evaluate(test_images_res, test_labels, verbose=0)
         print('Test loss:', score[0])
         print('Test accuracy:', score[1])
         
-        model.save("/content/drive/My Drive/Colab Notebooks/emotion_dataset/emotion_model.h5")
+        model.save("emotion_model_3A.h5")
         
 
     def load_trained_word_model(self):
@@ -208,4 +208,4 @@ obj = Oyez_Oyez(training_word_data, testing_word_data, validation_word_data, tra
                  validation_emotion_data, training_emotion_label, testing_emotion_label, validation_emotion_label )
 
 
-obj.train_word_model()
+obj.train_emotion_model()
