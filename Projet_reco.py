@@ -43,7 +43,8 @@ test_images_res = test_data.reshape((-1, 129, 129, 1))
 
 class Oyez_Oyez:
 
-    def __init__(self):
+    def __init__(self, input_shape):
+        self.input_shape = input_shape
 
 
 
@@ -164,6 +165,6 @@ class Oyez_Oyez:
 
 
 
-obj = Oyez_Oyez()
+obj = Oyez_Oyez((129,129,1))
 
 obj.train_emotion_model()
