@@ -50,13 +50,13 @@ model.summary()
 
 #**************************************** Compile and train our CNN model *******************************************
 
+checkpoint = ModelCheckpoint('model-{epoch:03d}-{acc:03f}-{val_acc:03f}.h5', verbose=1, monitor='val_acc',save_best_only=True, mode='auto')
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=70, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=70, callbacks=[checkpoint], validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
-model.save("emotion_model_mfcc_3.h5")
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
