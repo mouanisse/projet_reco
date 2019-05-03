@@ -7,10 +7,10 @@ from sklearn.model_selection import train_test_split
 
 #********************************************* Loading the dataset **************************************************
 
-train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_RAVDESS+.npy')
-test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_RAVDESS+.npy')
-train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_RAVDESS+.npy')
-test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_RAVDESS+.npy')
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_3.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_3.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_3.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_3.npy')
 test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
@@ -43,7 +43,7 @@ model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 
 model.add(keras.layers.Flatten())
-model.add(keras.layers.Dense(7, activation='softmax'))
+model.add(keras.layers.Dense(3, activation='softmax'))
 
 
 model.summary()
@@ -53,10 +53,10 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=100, validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=30, validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
-model.save("emotion_model_mfcc.h5")
+model.save("emotion_model_mfcc_3.h5")
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
