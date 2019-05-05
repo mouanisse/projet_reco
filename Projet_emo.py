@@ -44,7 +44,7 @@ model.summary()
 
 #**************************************** Compile and train our CNN model *******************************************
 
-checkpoint = keras.callbacks.ModelCheckpoint('model2-{epoch:03d}-{acc:03f}-{val_acc:03f}.h5', verbose=1, monitor='val_acc',save_best_only=True, mode='auto')
+checkpoint = keras.callbacks.ModelCheckpoint('model3-{epoch:03d}-{acc:03f}-{val_acc:03f}.h5', verbose=1, monitor='val_acc',save_best_only=True, mode='auto')
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
