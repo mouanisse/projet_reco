@@ -19,10 +19,10 @@ test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, t
 
 model = keras.Sequential()
 
-model.add(keras.layers.Conv1D(64, 5, padding='same', input_shape=(345,1), activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(345,1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
-model.add(keras.layers.Conv1D(128, 5, padding='same', activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.MaxPooling1D(pool_size=8))
@@ -54,7 +54,7 @@ checkpoint = keras.callbacks.ModelCheckpoint('model-{epoch:03d}-{acc:03f}-{val_a
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=70, callbacks=[checkpoint], validation_data=(val_data, val_labels))
+model.fit(train_data, train_labels, batch_size=100, epochs=100, callbacks=[checkpoint], validation_data=(val_data, val_labels))
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
