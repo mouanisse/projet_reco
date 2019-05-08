@@ -7,10 +7,10 @@ from sklearn.model_selection import train_test_split
 
 #********************************************* Loading the dataset **************************************************
 
-train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_RAVDESS7.npy')
-test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_RAVDESS7.npy')
-train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_RAVDESS7.npy')
-test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_RAVDESS7.npy')
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_RAVDESS8.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_RAVDESS8.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_RAVDESS8.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_RAVDESS8.npy')
 test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
@@ -52,7 +52,7 @@ model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 
 model.add(keras.layers.Flatten())
-model.add(keras.layers.Dense(7, activation='softmax'))
+model.add(keras.layers.Dense(8, activation='softmax'))
 
 
 model.summary()
