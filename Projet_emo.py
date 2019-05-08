@@ -25,6 +25,7 @@ model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
+model.add(keras.layers.Dropout(0.3))
 model.add(keras.layers.MaxPooling1D(pool_size=8))
 
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
