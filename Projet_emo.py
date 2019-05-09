@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow import keras
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 
 #********************************************* Loading the dataset **************************************************
