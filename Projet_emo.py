@@ -73,6 +73,7 @@ plt.ylabel('Accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
+plt.savefig('result.png')
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
