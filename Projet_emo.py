@@ -63,7 +63,15 @@ checkpoint = keras.callbacks.ModelCheckpoint('model-RAVDESS7-{epoch:03d}-{acc:03
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(train_data, train_labels, batch_size=100, epochs=100, callbacks=[checkpoint], validation_data=(val_data, val_labels))
+cnn_memory = model.fit(train_data, train_labels, batch_size=100, epochs=100, callbacks=[checkpoint], validation_data=(val_data, val_labels))
+
+plt.plot(cnn_memory.history['acc'])
+plt.plot(cnn_memory.history['val_acc'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()
 
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
