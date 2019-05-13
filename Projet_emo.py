@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 
 #********************************************* Loading the dataset **************************************************
 
-train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_RAVDESS7.npy')
-test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_RAVDESS7.npy')
-train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_RAVDESS7.npy')
-test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_RAVDESS7.npy')
+train_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_emotions_RAVDESS7_version2.npy')
+test_val_data = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_emotions_RAVDESS7_version2.npy')
+train_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/train_labels_RAVDESS7_version2.npy')
+test_val_labels = np.load('/content/drive/My Drive/Colab Notebooks/emotion_dataset/test_labels_RAVDESS7_version2.npy')
 test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, test_val_labels, test_size=0.5, random_state=42)
 
 
@@ -20,7 +20,7 @@ test_data, val_data, test_labels, val_labels = train_test_split(test_val_data, t
 
 model = keras.Sequential()
 
-model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(259,1), activation='relu'))
+model.add(keras.layers.Conv1D(256, 5, padding='same', input_shape=(345,1), activation='relu'))
 model.add(keras.layers.BatchNormalization())
 
 model.add(keras.layers.Conv1D(256, 5, padding='same', activation='relu'))
