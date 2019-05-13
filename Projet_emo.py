@@ -66,15 +66,6 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 cnn_memory = model.fit(train_data, train_labels, batch_size=100, epochs=100, callbacks=[checkpoint], validation_data=(val_data, val_labels))
 
-plt.plot(cnn_memory.history['acc'])
-plt.plot(cnn_memory.history['val_acc'])
-plt.title('Model accuracy')
-plt.ylabel('Accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'validation'], loc='upper left')
-plt.show()
-plt.savefig('result.png')
-
 score = model.evaluate(test_data, test_labels, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
